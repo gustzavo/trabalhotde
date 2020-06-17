@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <title>Projeto2-Experiencia Criativa</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="moldando.css">
+  </head>
+  <body>
+    <div class="projeto2">
+      <h2>O Codigo do projeto se encontra abaixo: mas antes vale resaltar que: <br> <strong>ELE FOI FEITO NO Processing</strong></h2>
+      <p>
+        <br>//-------------------------------------SOMENTE VARIAVEIS PARA O PROJETO
+        <br>int heartx=525;
+        <br>int hearty=466;
+        <br>boolean heartB;
+        <br>boolean heartD;
+        <br>boolean heartC;
+        <br>boolean heartE;
+        <br>boolean Iniciomusic=true;
+        <br>boolean Secondusic;
+        <br>boolean esquerda;
+        <br>boolean direita;
+        <br>boolean cima;
+        <br>boolean baixo;
+        <br>int tela=4;
+        <br>int x=537;
+        <br>int y=314;
+        <br>import ddf.minim.*;
+        <br>import processing.video.*;
+        <br>Minim minim;
+        <br>AudioPlayer Inicio;
+        <br>AudioPlayer Fase1;
+        <br>int initialtimemusic;
+        <br>int initialtimevalue=18900;
+        <br>int secondtimevalue=18500;
+        <br>PImage D1;
+        <br>PImage D2;
+        <br>PImage D3;
+        <br>PImage E1;
+        <br>PImage E2;
+        <br>PImage E3;
+        <br>PImage C1;
+        <br>PImage C2;
+        <br>PImage C3;
+        <br>PImage B1;
+        <br>PImage B2;
+        <br>PImage B3;
+        <br>PImage fundo_inicial;
+        <br>PImage Botaojogar;
+        <br>PImage Botaocomojogar;
+        <br>PImage backfirst;
+        <br>PImage voltar;
+        <br>PImage Fase1background;
+        <br>PImage BackgroundFase2;
+        <br>int contImgD=1;
+        <br>int contImgC=1;
+        <br>int contImgB=1;
+        <br>int contImgE=1;
+        <br>int Hpenemy1=100;
+        <br>int Hp=20;
+        <br>PImage Inimigo;
+        <br>PImage inimigoFight;
+        <br>PImage botaoFight;
+        <br>PImage heart;
+        <br>Movie myMovie;
+        <br>int aviso=20000;
+        <br>//=================================================================FAZENDO COM QUE POSSA IMPORTAR IMAGENS,MUSICAS
+        <br>void setup() {
+        <br>myMovie = new Movie(this,"tyr.mov");
+        <br>size(1050, 700);
+        <br>minim=new Minim(this);
+        <br>Inicio=minim.loadFile("Tela-de-inicio.wav");
+        <br>Fase1=minim.loadFile("FASE1.wav");
+        <br>initialtimemusic =millis();
+        <br>//delay(1000);
+        <br>Botaojogar=loadImage("jogar.png");
+        <br>Botaocomojogar=loadImage("comoJogar.png");
+        <br>fundo_inicial=loadImage("first background.png");
+        <br>D1=loadImage("Player_andando_lado(1-4).png");
+        <br>D2=loadImage("Player_andando_lado(2-4).png");
+        <br>D3=loadImage("Player_andando_lado(4-4).png");
+        <br>C1=loadImage("Player_andando_costas(1-4).png");
+        <br>C2=loadImage("Player_andando_costas(2-4).png");
+        <br>C3=loadImage("Player_andando_costas(4-4).png");
+        <br>B1=loadImage("Player_andando_de_frente(1-4).png");
+        <br>B2=loadImage("Player_andando_de_frente(2-4).png");
+        <br>B3=loadImage("Player_andando_de_frente(4-4).png");
+        <br>E1=loadImage("Player_andando_(1-4).png");
+        <br>E2=loadImage("Player_andando_(2-4).png");
+        <br>E3=loadImage("Player_andando_(4-4).png");
+        <br>BackgroundFase2=loadImage("BackgroundFase2.png");
+        <br>backfirst=loadImage("first background.png");
+        <br>voltar=loadImage("voltar.png");
+        <br>Fase1background=loadImage("Fase1background.png");
+        <br>Inimigo=loadImage("Inimigo1.png");
+        <br>inimigoFight=loadImage("Inimigobatalha.png");
+        <br>botaoFight=loadImage("Botaofight.png");
+        <br>heart=loadImage("heart.png");}
+        <br>void draw(){
+        <br>Telainicial();
+        <br>if(tela==1){Fase1();}
+        <br>if(tela==2)Telacomojogar();
+        <br>if (tela==5) {Fase2();}
+        <br>if (tela==6) {Luta1();}
+        <br>if (tela==9) {videos();}}  //--------------------------------------------------PRIMEIRA TELA
+        <br>void Telainicial(){
+        <br>music();
+        <br>image(fundo_inicial, 0, 0);//-------------------------BACKGROUND E BOTOES
+        <br>image(Botaojogar,400,320);
+        <br>image(Botaocomojogar,400,400);
+        <br>if(mousePressed){//-----------------------TELAS
+        <br>if((mouseX>400 && mouseX<589) && (mouseY>320 && mouseY<390)) tela=1;
+        <br>else if((mouseX>400 && mouseX<589) && (mouseY>400 && mouseY<470)) tela=2;}
+        <br>}
+        <br>//-----------------------------------------------------------------------A TELA MAIS INUTIL DO JOGO
+        <br>void Telacomojogar() {
+        <br>image(backfirst, 0, 0);
+        <br>fill(214); textSize(20);text("Como jogar:", 0, 100);
+        <br>fill(214); textSize(15); text("Para se movimentar, Utilize as setas.", 0, 130);
+        <br>fill(214); textSize(15);text("Para selecionar Utilize o mouse mesmo.", 0, 145);
+        <br>image(voltar,400,0);
+        <br>if (tela==4) Telainicial();
+        <br>if (mousePressed){
+        <br>if((mouseX>400)&&(mouseX<588) &&(mouseY<71)) tela=4;}}
+        <br>//-------------------------------------------------------------------VALORES BOOLEANOS EM KEYPRESSED PRA DAR 8 DIREÇÕES E NÃO SAIR DO ENSINADO EM AULA
+        <br>void keyPressed(){if(key == CODED){
+        <br>    if(keyCode==UP){cima=true;heartC=true;}
+        <br>    else if(keyCode==DOWN ){baixo=true;heartB=true;}
+        <br>    else if(keyCode==RIGHT){direita=true;heartD=true;}
+        <br>    else if(keyCode==LEFT ){esquerda=true;heartE=true;}
+        <br>    else if (keyCode==SHIFT)tela =4;}}
+        <br>//-------------------------------------------------------------------VALORES BOOLEANOS EM KEYRELEASED PARA DAR 8 DIREÇÕES E NÃO SAIR DO ENSINADO EM AULA
+        <br>void keyReleased(){if(key == CODED){
+        <br>    if(keyCode==UP){cima=false;heartC=false;}
+        <br>    else if(keyCode==DOWN){baixo=false;heartB=false;}
+        <br>    else if(keyCode==RIGHT){direita=false;heartD=false;}
+        <br>    else if(keyCode==LEFT){esquerda=false;heartE=false;}}}
+        <br>//---------------------------------------------------------MUSICAS
+        <br>void music(){
+        <br>   if (Iniciomusic){Inicio.play();
+        <br>  if (millis()-initialtimemusic>initialtimevalue){
+        <br>  initialtimemusic=millis();
+        <br>  Inicio.rewind();}}
+        <br>  else{Inicio.pause();}
+        <br>  if(Secondusic){Fase1.play();
+        <br>  if(millis()-initialtimemusic> secondtimevalue){
+        <br>  initialtimemusic=millis();
+        <br>  Fase1.rewind();}}
+        <br>  else{Fase1.pause();}}
+        <br>
+        <br> //======================================================= A INTENÇÃO ERA TER MAIS VIDEOS
+        <br>void videos(){
+        <br>  myMovie.play();
+        <br> image(myMovie,0,0);
+        <br> //A DANÇA DO SANS!. Disponivel em:<https://www.youtube.com/watch?v=d3jB1PJoBKk>.Acesso em :03 de maio de 2020.
+        <br> }
+        <br>void movieEvent(Movie m){
+        <br> m.read();
+        <br>}
+      </p>
+        <hr>
+
+      <p>
+        <br>void Fase1(){
+        <br>  Iniciomusic=false;
+        <br>  Secondusic=true;
+        <br>  image(Fase1background,0,0);
+        <br>   if ((cima==false) && (baixo==false) && (direita==false) && (esquerda==false)) image(B1,x,y);
+        <br>   if(esquerda){x-=3;
+        <br>          if (contImgE<50) contImgE++;
+        <br>          if (contImgE>=1)  {image(Fase1background,0,0);image(E2, x, y);}
+        <br>          if (contImgE>=15) {image(Fase1background,0,0);image(E1, x, y);}
+        <br>          if (contImgE>=20) {image(Fase1background,0,0);image(E3, x, y);}
+        <br>          if (contImgE>=40) {image(Fase1background,0,0);image(E1, x, y);contImgE=1;}}
+        <br>      if((direita)&&(x<width))
+        <br>          {x+=3;if (contImgD<40) contImgD++;
+        <br>          if (contImgD>=1)  {image(Fase1background,0,0);image(D1, x, y);}
+        <br>          if (contImgD>=10) {image(Fase1background,0,0);image(D2, x, y);}
+        <br>          if (contImgD>=20) {image(Fase1background,0,0);image(D1, x, y);}
+        <br>          if (contImgD>=30) {image(Fase1background,0,0);image(D3, x, y);contImgD=1;}}
+        <br>      if(cima){y-=3;
+        <br>         if (contImgC<50) contImgC++;
+        <br>          if (contImgC>=1)  {image(Fase1background,0,0);image(C2, x, y);}
+        <br>          if (contImgC>=15) {image(Fase1background,0,0);image(C1, x, y);}
+        <br>          if (contImgC>=20) {image(Fase1background,0,0);image(C3, x, y);}
+        <br>          if (contImgC>=40) {image(Fase1background,0,0);image(C1, x, y);contImgC=1;}}
+        <br>      if(baixo){y+=3;
+        <br>          if (contImgB<40) contImgB++;
+        <br>          if (contImgB>=1)  {image(Fase1background,0,0);image(B1, x, y);}
+        <br>          if (contImgB>=10) {image(Fase1background,0,0);image(B2, x, y);}
+        <br>          if (contImgB>=20) {image(Fase1background,0,0);image(B1, x, y);}
+        <br>          if (contImgB>=30) {image(Fase1background,0,0);image(B3, x, y);contImgB=1;}}
+        <br>music();
+        <br>if (x<=417)x=417;
+        <br>if ((x>=0  )&&(x<661)&&(y<=239))y=239;
+      </p>
+      <hr>
+
+      <p>
+        <br>if ((x>=0  )&&(x<661)&&(y>=395))y=395;
+        <br>if ((x>=660)&&(y<=395)&&(y>=347)&&(x<=663))x=660;
+        <br>if ((x>=660)&&(y>=239)&&(y<=269)&&(x<=663))x=660;
+        <br>if ((x>=661)&&(x<=1035)&&(y>=347))y=347;
+        <br>if ((x>=661)&&(x<=1035)&&(y<=269))y=269;
+        <br>if (x>1036)x=1036;
+        <br>if ((x>=966) &&(x<=1026)&&(y<=284))tela =5;
+        <br>if (tela==5) {Fase2();x=x-461;y=640;}}
+      </p>
+      <hr>
+         <p>
+           <br>void Luta1(){
+           <br>  Iniciomusic=false;
+           <br>  Secondusic=false;
+           <br>  music();
+           <br>  background(0);
+           <br>  fill(255);rect(210,435,630,170);
+           <br>  fill(0); rect(215,440,620,160);
+           <br>  if(heartC)hearty-=3;
+           <br>  if(heartB)hearty+=3;
+           <br>  if(heartE)heartx-=3;
+           <br>  if(heartD)heartx+=3;
+           <br>  image(heart,heartx,hearty);
+           <br>  println(heartx,hearty);
+           <br>  if (heartx<220) heartx=219;
+           <br>  if (heartx>816)heartx=817;
+            <br>  if (hearty>577)hearty=578;
+            <br>  if (hearty<444)hearty=443;
+            <br>  fill(255);text("VOLUME ALTO, não consegui cortar o video, entao vai inteiro mesmo, depois eu faço isso",525,350);
+            <br>  if (millis()-initialtimemusic>aviso){
+            <br>  tela=9;}
+            <br>  if (tela==9) videos();
+            <br>}
+          </p>
+          <hr>
+          <p>
+            <br>void Fase2(){
+            <br>image(BackgroundFase2,0,0);
+            <br>image(Inimigo,544,240);
+            <br>if ((cima==false) && (baixo==false) && (direita==false) && (esquerda==false)) image(B1,x,y);
+            <br>if(esquerda){x-=3;image(B1,x,y);
+            <br>if (contImgE<50) contImgE++;
+            <br>if (contImgE>=1)  {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(E2, x, y);}
+            <br>if (contImgE>=10) {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(E1, x, y);}
+            <br>if (contImgE>=20) {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(E3, x, y);}
+            <br>if (contImgE>=30) {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(E1, x, y);contImgE=1;}}
+            <br>if((direita)&&(x<width))
+            <br>{x+=3;if (contImgD<40) contImgD++;
+            <br>if (contImgD>=1)  {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(D1, x, y);}
+            <br>if (contImgD>=10) {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(D2, x, y);}
+            <br>if (contImgD>=20) {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(D1, x, y);}
+            <br>if (contImgD>=30) {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(D3, x, y);contImgD=1;}}
+            <br>if(cima){y-=3;
+            <br>if (contImgC<50) contImgC++;
+            <br>if (contImgC>=1)  {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(C2, x, y);}
+            <br>if (contImgC>=15) {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(C1, x, y);}
+            <br>if (contImgC>=20) {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(C3, x, y);}
+            <br>if (contImgC>=40) {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(C1, x, y);contImgC=1;}}
+            <br>if(baixo){y+=3;
+            <br>if (contImgB<40) contImgB++;
+            if (contImgB>=1)  {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(B1, x, y);}
+            <br>if (contImgB>=10) {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(B2, x, y);}
+            <br>if (contImgB>=20) {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(B1, x, y);}
+            <br>if (contImgB>=30) {image(BackgroundFase2,0,0);image(Inimigo,544,240);image(B3, x, y);contImgB=1;}}
+            <br>music();
+            <br>if ((x<403))x=402;
+            <br>if((x>402)&&(x<688)&&(y<189))y=189;
+            <br>if ((x>686)&&(x<691)&&(y<200))x=686;
+            <br>if((x>686)&&(y<200))y=200;
+            <br>if((x>867)&&(y>243))y=243;
+            <br>if((x>686)&&(y>244))x=686;
+            <br>if((x>402)&&(x<686)&&(y<266)&&(y>187))tela=6;
+            <br>if (tela==6) Luta1();
+            <br>}
+          </p>
+          <hr>
+          <hr>
+          <h2>Arquivos</h2>
+          <a href="data.rar">Data(Todos os arquivos originais de:Gustavo Rodrigues Guimarães)</a>
+
+
+    </div>
+  </body>
+</html>

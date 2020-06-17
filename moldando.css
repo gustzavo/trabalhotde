@@ -1,0 +1,65 @@
+body
+{
+  width: 95%;
+  margin: auto;
+  background: url(a.jpg) center;
+
+  font-family: cursive;
+  text-align: left;
+  line-height: 1.5;
+  color: #533bee;
+}
+main
+{
+  margin:0px 300px;
+  text-align: center;
+  padding-left: 20px;
+  background: #3002028c
+
+}
+.expcriativa, .racio
+{
+  margin: auto;
+  display: inline-block;
+
+
+}
+.logopuc
+{
+  text-align: center;
+  margin: 0;
+}
+.projeto2
+{
+  font-family: cursive;
+  font-size: 11px;
+}
+.racio1
+{
+  font-family: cursive;
+  background: url(a.jpg) center;
+}
+.Gerente, .cliente h2, .geral h2
+{
+  text-align: center;
+
+}
+.downlad_tde2racio
+{
+  padding-bottom: 20px;
+  font-family: cursive;
+}
+
+.download_tde3racio
+{
+  padding-bottom:20px;
+  font-family: cursive;
+
+}
+.texto
+{
+  font-style: oblique;
+  font-family: cursive;
+  font-size: 20px;
+  color: red;
+}

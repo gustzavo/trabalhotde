@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <title>Raciocinio-Projeto 1</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="moldando.css">
+  </head>
+  <body>
+    <div class="racio1">
+
+
+      <h1>Resolução de problemas!</h1>
+      <p>vai estar abaixo os exercisios junto das resoluções:</p>
+      <h4>Faça uma função que calcule o termo de uma P.A:</h4>
+      <p>Resolução:</p>
+      <dl>
+        <dt>def termoPA(r,a1,n: float):</dt>
+        <dd>return a1 + r*(n-1)</dd>
+      </dl>
+      <p>
+        <br>r = float(input("Insira a Razão da PA: "))
+        <br>a1 = float(input("Insira o primeiro termo da PA: "))
+        <br>n = float(input("Insira o qual termo deseja descobrir da PA: "))
+        <br>esult = termoPA(r,a1,n)
+        <br>print(f"O valor do termo {n} eh: {result}")
+      </p>
+      <hr>
+
+      <h4>faça uma função que calcule a area de um triangulo</h4>
+      <p>Resolução:</p>
+      <p>import math</p>
+      <dl>
+        <dt>def calcAreaTriangulo(a,b,c: float):</dt>
+        <dd>return "Valor inserido incorreto" if a <=0 or b <=0 or c <=0 else return math.sqrt((((a+b+c)/2)*(((a+b+c)/2)-a)*(((a+b+c)/2)-b)*(((a+b+c)/2)-c)))</dd>
+      <hr>
+
+      <h4>faça uma função que valide dado pra inteiro, e que se o valor dado for maior que 20.0 some mais 8.0 e se for menor subtraia 5.0:</h4>
+      <p>def adicao(a,b: int):
+        <br>if(type(a) != int) or type(b) != int:
+        <br>print("Valor inserido incorreto")
+        <br>else:
+        <br>s = a+b
+        <br>if s > 20.0:
+        <br>    s = s + 8.0
+        <br>else:
+        <br>    s = s - 5.0
+        <br>    return s
+
+        <br>    a = int(input("Digite o valor do primeiro numero: "))
+        <br>    b = int(input("Digite o valor do segundo numero: "))
+        <br>    print(f"Resultado: {adicao(a,b)}")
+      </p>
+      <hr>
+
+      <h4>Faça uma função que calcule o IMC</h4>
+      <p>Resolução:</p>
+      <p>def calcIMC(p,a: float):
+        <br>if type(p) != float or type(a) != float:
+        <br>print("os Valores inseridos estão incorretos, tente novamente.")
+        <br>else:
+        <br>return p/(a**2)
+
+        <br>def comparaIMC(imc: float):
+        <br>if (imc < 17.0):
+        <br>print(f"Sua situacao eh: Muito abaixo do peso, IMC = {imc}")
+        <br>elif (imc < 18.5):
+        <br>print(f"Sua situacao eh: Abaixo do peso, IMC = {imc}")
+        <br>elif (imc <25.0):
+        <br>print(f"Sua situacao eh: Peso normal, IMC = {imc}")
+        <br>elif (imc < 30.0):
+        <br>print(f"Sua situacao eh: Acima do peso, IMC = {imc}")
+        <br>elif (imc < 35.0):
+        <br>print(f"Sua situacao eh: Obesidade I, IMC = {imc}")
+        <br>elif (imc < 40.0):
+        <br>print(f"Sua situacao eh: Obesidade II (severa), IMC = {imc}")
+        <br>elif (imc >= 40.0):
+        <br>print(f"Sua situacao eh Obesidade III (mórbida), IMC = {imc}")
+
+        <br>a = float(input("Digite a sua altura: "))
+        <br>p = float(input("Digite o seu peso: "))
+        <br>imc = calcIMC(p,a)
+        <br>comparaIMC(imc)</p>
+        <hr>
+
+        <h4>Verificador de divisibilidade</h4>
+        <p>Resolução:</p>
+        <p>def verifica(n: int):
+          <br>if (n % 3 == 0) and (n % 7 == 0): # condicional para verificar se o numero eh divisivel por 3 e por 7
+          <br>print(f"o numero {n} eh divisel por 3 e por 7.")
+          <br>elif (n % 3 == 0) and (n % 7 != 0): # condicional para verificar se o numero eh divisivel somente por 3
+          <br>print(f"o numero {n} eh divisivel somente por 3")
+          <br>elif (n % 3 != 0) and (n % 7 == 0): # condicional para verificar se o numero eh divisiel somente por 7
+          <br>print(f"o numero {n} eh divisivel somente por 7")
+          <br>else: # saida padrao caso o numero nao seja divisivel
+          <br>print(f"o numero {n} nao eh divisivel por 3 nem por 7")
+
+          <br>n = int(input("Digite um numero inteiro: "))
+          <br>verifica(n)
+        </p>
+        <hr>
+
+        <h4>faça uma função que arrume 3 numeros de forma cresente sem usar min ou max e nem organizadores</h4>
+        <p>resoluções:</p>
+        Lista =[]
+
+        <br>def ComparaNumero (A,B,C: int):
+        <br>if (A<B):
+        <br>if (B<C) and (A<C):
+        <br>Lista.append(A)
+        <br>Lista.append(B)
+        <br>Lista.append(C)
+        <br>else:
+        <br>Lista.append(A)
+        <br>Lista.append(C)
+        <br>Lista.append(B)
+        <br>elif (B<C):
+        <br>if(C<A)and(B<A):
+        <br>Lista.append(B)
+        <br>Lista.append(C)
+        <br>Lista.append(A)
+        <br>else:
+        <br>Lista.append(B)
+        <br>Lista.append(A)
+        <br>Lista.append(C)
+        <br>else:
+        <br>if(C<B)and(B<A):
+        <br>Lista.append(C)
+        <br>Lista.append(B)
+        <br>Lista.append(A)
+        <br>else:
+        <br>Lista.append(C)
+        <br>Lista.append(A)
+        <br>Lista.append(B)
+        <br>A=int(input("Digite o Primeiro Digito: "))
+        <br>B=int(input("Digite o Segundo Digito: "))
+        <br>C=int(input("Digite o Terceiro Digito: "))
+        <br>ComparaNumero(A,B,C)
+        <br>print(Lista)
+        <hr>
+
+        <h4>Construir um algoritmo para calcular as raízes de uma equação do 2o grau, sendo
+# que os valores dos coeficientes A, B, e C devem ser fornecidos pelo usuário através do
+# teclado. Caso não existam reais, o usuário deverá ser informado.</h4>
+  <br>a = float(input('Insira o valor de a: '))
+  <br>b = float(input('Insira o valor de b: '))
+  <br>c = float(input('Insira o valor de c: '))
+
+  <br>def eq_2_grau(a,b,c):
+  <br>delta = b**2-4*a*c
+  <br>if delta < 0:
+  <br>print("Delta negativo: " + str(delta))
+  <br>return
+  <br>raiz1 = (-b + (delta)**(1/2))/(2*a)
+  <br>raiz2 = (-b - (delta)**(1/2))/(2*a)
+  <br>print("Primeira raiz: " + str(raiz1) +"\nSegunda raiz: " + str(raiz2))
+
+  <br>eq_2_grau(a,b,c)
+  <hr>
+
+  <h4>calcule a dose de um remedio para um pasciente qualquer</h4>
+  <p>resolução:</p>
+  <br>idade = 22
+  <br>peso = 58
+
+  <br>if idade >= 12:
+  <br>if peso >= 60: dose = 1000
+  <br>else: dose = 875
+  <br>else:
+  <br>if peso > 30: dose = 750
+  <br>elif peso > 24.1: dose = 500
+  <br>elif peso > 16.1: dose = 375
+  <br>elif peso > 9.1: dose = 250
+  <br>elif peso > 5: dose = 500
+  <br>else: dose = 0
+
+  <br>gotas = int(dose/25)
+
+  <br>print("Paciente deve tomar " + str(gotas) + " gotas")
+  <hr>
+  <hr>
+  <h3>download do arquivo .py</h3>
+  <a href="dados.rar">link arquivos .py</a>
+
+
+    </div>
+  </body>
+</html>
